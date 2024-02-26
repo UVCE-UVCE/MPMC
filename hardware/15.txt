@@ -1,0 +1,47 @@
+
+15.
+
+#include<LPC214x.h>
+
+unsigned int COUNT=0;
+
+unsigned int j=0;
+
+unsigned int CLOCK[4]={0x00030000, 0x00090000, 0x000C0000, 0x00060000};
+
+unsigned int ANTI_CLOCK[4]={0x00060000, 0x000C0000, 0x00090000,0x00030000};
+
+void DELAY_IS(unsigned int n){
+unsigned int i,j;
+for(i=1;i<=n;i++)
+for(j=0;j<=10000;j++);
+}
+
+void CLOCK_WISE_DIRECTION(unsigned int STEP, unsigned int TIME){
+for(j=0;j<=STEP;j++){
+IO0PIN = CLOCK[COUNT];
+COUNT++;
+DELAY_IS(TIME);
+if(COUNT-=4)
+COUNT=0;
+}
+}
+
+void ANTI_CLOCK_WISE_DIRECTION(unsigned int STEP, unsigned int TIME){
+for(j=0;j<=STEP;j++){
+IO0PIN = ANTI_CLOCK[COUNT];
+COUNT++;
+DELAY_IS(TIME); 
+if(COUNT==4)
+COUNT=0;
+}
+}
+
+
+int main(){
+IO0PIN=0X000F0000;
+while(1){
+CLOCK_WISE_DIRECTION(10,500);
+ANTI_CLOCK_WISE_DIRECTION(10,500);
+}
+}

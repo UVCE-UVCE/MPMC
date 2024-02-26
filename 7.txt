@@ -1,0 +1,30 @@
+7a
+#include<lpc21xx.H>
+int main(){
+int a=3;
+int b=7;
+int add,sub,mul,div;
+add=a+b;
+sub=a-b;
+mul=a*b;
+div=a/b;
+
+
+return 0;
+}
+
+7b
+#include<lpc21xx.H>
+int main(){
+int a=3;
+int b=7;
+int and,xor,or,not;
+not=~a;
+xor=a^b;
+and=a&b;
+or=a|b;
+
+
+return 0;
+}
+
